@@ -27,6 +27,9 @@
 #define __COOL_PATTERN_CREATIONAL_SINGLETON_HPP_INCLUDED__
 
 
+#include "../../idiom/trait/noncopyable.hpp"
+
+
 namespace cool{ 
 namespace pattern{ 
 namespace creational{
@@ -50,7 +53,8 @@ namespace creational{
  * @endcode
  **************************************************************************************************/
 template<typename T_DERIVED>
-class Singleton
+class Singleton :
+	public cool:idiom:trait::noncopyable
 {
 protected:
 				// PROTECTED CONSTRUCTOR
