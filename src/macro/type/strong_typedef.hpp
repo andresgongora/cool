@@ -41,10 +41,10 @@ public:												\
 			NAME(void) {}								\
 												\
 	explicit	NAME(TYPE value) : 							\
-				yahal::utility::oop::Wrapper<TYPE>::Wrapper(value) {}		\
+				cool::type::Wrapper<TYPE>::Wrapper(value)	{}				\
 												\
 	explicit	NAME(const NAME& other) : 						\
-				yahal::utility::oop::Wrapper<TYPE>::Wrapper(other){}		\
+				cool::type::Wrapper<TYPE>::Wrapper(other)	{}				\
 }
 
 

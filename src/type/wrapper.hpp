@@ -36,7 +36,7 @@ namespace type{
  * @brief
  **************************************************************************************************/
 template<typename T>
-class cool::type::Wrapper
+class Wrapper
 {
 public:
 				// CONSTRUCTORS
