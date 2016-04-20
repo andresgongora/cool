@@ -23,41 +23,44 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-
-#ifndef __COOL_IDIOM_TRAIT_NONHEAPABLE_HPP_INCLUDED__
-#define __COOL_IDIOM_TRAIT_NONHEAPABLE_HPP_INCLUDED__
-
-
-#include <cstddef>
+#ifndef __COOL_TYPE_WRAPPER_HPP_INCLUDED__
+#define __COOL_TYPE_WRAPPER_HPP_INCLUDED__
 
 
 namespace cool{ 
-namespace idiom{ 
-namespace trait{
+namespace type{ 
 
 
 
 /***********************************************************************************************//**
- * Non Heapable base class.
- * Each class that inherits from this class can not be instantiated with new.
- * Also it can not be removed with delete.
- * Templated to allow for base class optimization.
+ * @brief
  **************************************************************************************************/
-class NonHeapable
+template<typename T>
+class cool::type::Wrapper
 {
-protected:
-			NonHeapable(void)			{}
+public:
+				// CONSTRUCTORS
+				Wrapper(void) {}
+	explicit		Wrapper(T value) :		   value_(value) 	{}
+	explicit		Wrapper(const Wrapper<T>& other) : value_(other.value_) {}
 
-	static void*	operator new(std::size_t)		{return static_cast<void*>(NULL);}
-	static void*	operator new(std::size_t,void*)		{return static_cast<void*>(NULL);}
-	static void*	operator new[](std::size_t)		{return static_cast<void*>(NULL);}
-	static void*	operator new[](std::size_t,void*)	{return static_cast<void*>(NULL);}
+
+
+	operator const		T & () const				{ return value_; }
+	operator		T & ()					{ return value_; }
+
+	Wrapper<T>&		operator=(const Wrapper<T>& other)	{ value_ = other.value_;return *this;}
+
+	//bool			operator==(const Wrapper<T>& other)	{return value_ == other.value_;}
+	//bool			operator<(const Wrapper<T>& other)	{return value_ < other.value_;}
+
+
+private:
+	T			value_;
 };
 
 
-
 /* ---------------------------------------------------------------------------------------------- */
-}	// namespace trait
-}	// namespace idiom
+}	// namespace type
 }	// namespace cool
-#endif 	// __COOL_IDIOM_TRAIT_NONHEAPABLE_HPP_INCLUDED__
+#endif 	// __COOL_TYPE_WRAPPER_HPP_INCLUDED__

@@ -38,15 +38,14 @@ namespace trait{
  * Its constructor and asignment operator are protected and private respectively.
  * Templated to allow for base class optimization.
  **************************************************************************************************/
-template<typename T_DERIVED>
 class NonCopyable
 {
 protected:
 				NonCopyable(void) {}
 
 private:
-	explicit		NonCopyable(const NonCopyable<T_DERIVED>&);
-	NonCopyable<T_DERIVED>& operator=(const NonCopyable<T_DERIVED>&);
+	explicit		NonCopyable(const NonCopyable&);
+	const NonCopyable& 	operator=(const NonCopyable&);
 };
 
 

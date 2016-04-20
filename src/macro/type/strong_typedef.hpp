@@ -23,41 +23,31 @@
 	+-----------------------------------------------------------------------+	*/
 
 
-
-#ifndef __COOL_IDIOM_TRAIT_NONHEAPABLE_HPP_INCLUDED__
-#define __COOL_IDIOM_TRAIT_NONHEAPABLE_HPP_INCLUDED__
-
-
-#include <cstddef>
+#ifndef __COOL_MACRO_TYPE_CREATIONAL_STRONG_TYPEDEF_HPP_INCLUDED__
+#define __COOL_MACRO_TYPE_CREATIONAL_STRONG_TYPEDEF_HPP_INCLUDED__
 
 
-namespace cool{ 
-namespace idiom{ 
-namespace trait{
+#include "../../type/wrapper.hpp"
 
 
 
 /***********************************************************************************************//**
- * Non Heapable base class.
- * Each class that inherits from this class can not be instantiated with new.
- * Also it can not be removed with delete.
- * Templated to allow for base class optimization.
+ * @brief
  **************************************************************************************************/
-class NonHeapable
-{
-protected:
-			NonHeapable(void)			{}
-
-	static void*	operator new(std::size_t)		{return static_cast<void*>(NULL);}
-	static void*	operator new(std::size_t,void*)		{return static_cast<void*>(NULL);}
-	static void*	operator new[](std::size_t)		{return static_cast<void*>(NULL);}
-	static void*	operator new[](std::size_t,void*)	{return static_cast<void*>(NULL);}
-};
+#define COOL_STRONG_TYPEDEF(TYPE,NAME)								\
+class NAME : public cool::type::Wrapper<TYPE>							\
+{												\
+public:												\
+			NAME(void) {}								\
+												\
+	explicit	NAME(TYPE value) : 							\
+				yahal::utility::oop::Wrapper<TYPE>::Wrapper(value) {}		\
+												\
+	explicit	NAME(const NAME& other) : 						\
+				yahal::utility::oop::Wrapper<TYPE>::Wrapper(other){}		\
+}
 
 
 
 /* ---------------------------------------------------------------------------------------------- */
-}	// namespace trait
-}	// namespace idiom
-}	// namespace cool
-#endif 	// __COOL_IDIOM_TRAIT_NONHEAPABLE_HPP_INCLUDED__
+#endif 	// __COOL_MACRO_TYPE_STRONG_TYPEDEF_HPP_INCLUDED__

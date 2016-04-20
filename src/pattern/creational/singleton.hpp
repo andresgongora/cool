@@ -54,20 +54,21 @@ namespace creational{
  **************************************************************************************************/
 template<typename T_DERIVED>
 class Singleton :
-	public cool:idiom:trait::noncopyable
+	public cool::idiom::trait::NonCopyable
 {
 protected:
 				// PROTECTED CONSTRUCTOR
 				Singleton(void)	{}
 
+public:
+				// ACCESSOR
+	static T_DERIVED& 	getInstance(void) 	{ return instance_; }
+	static T_DERIVED const  getConstInstance(void)	{ return instance_; }
+
 private:
 				// SINGLETON INSTANCE
 	static T_DERIVED 	instance_;
 
-public:
-				// ACCESSOR
-	static T_DERIVED& 	getInstance(void) 	{ return instance_; }
-	static T_DERIVED& const getConstInstance(void)	{ return instance_; }
 };
 
 
