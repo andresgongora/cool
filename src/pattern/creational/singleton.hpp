@@ -17,7 +17,7 @@
 	| MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the		|
 	| GNU General Public License for more details.				|
 	|									|
-	| You should have received a heap of the GNU General Public License	|
+	| You should have received a copy of the GNU General Public License	|
 	| along with this program.  If not, see <http://www.gnu.org/licenses/>. |
 	|									|
 	+-----------------------------------------------------------------------+	*/
@@ -30,7 +30,7 @@
 #include "../../idiom/trait/noncopyable.hpp"
 
 
-namespace cool{ 
+namespace cool{
 namespace pattern{ 
 namespace creational{
 
@@ -52,9 +52,8 @@ namespace creational{
  * 	};
  * @endcode
  **************************************************************************************************/
-template<typename T_DERIVED>
-class Singleton :
-	public cool::idiom::trait::NonCopyable
+template<typename T>
+class Singleton : public cool::idiom::trait::NonCopyable
 {
 protected:
 				// PROTECTED CONSTRUCTOR
@@ -62,19 +61,18 @@ protected:
 
 public:
 				// ACCESSOR
-	static T_DERIVED& 	getInstance(void) 	{ return instance_; }
-	static T_DERIVED const  getConstInstance(void)	{ return instance_; }
+	static inline T& 	getInstance(void) 	{ return instance_; }
+//	static inline T const	getConstInstance(void)	{ return instance_; }
 
 private:
 				// SINGLETON INSTANCE
-	static T_DERIVED 	instance_;
-
+	static T 		instance_;
 };
 
 
 
 // CREATE INSTANCE
-template<typename T_DERIVED> T_DERIVED Singleton<T_DERIVED>::instance_;
+template<typename T> T Singleton<T>::instance_;
 
 
 
